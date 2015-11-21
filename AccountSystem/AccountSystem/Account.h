@@ -14,7 +14,6 @@ public:
 	virtual ~Account() throw();
 	bool cmpPassword(int psword) const throw();
 	void chgPassword(int psword) throw();
-	int getPassword() const throw();
 	list<RcdItem>& getRecord() throw();
 	int getNumber() const throw();
 	string getName() const throw();
@@ -23,7 +22,7 @@ public:
 	virtual void withdraw(int amount, Date& date)=0;
 	virtual void printAllRecd()=0;//print all record
 	virtual void searchRecd(Date& date1, Date& date2)=0;
-	virtual Account& operator=(Account& account)=0;
+	virtual Account& operator=(Account& account)throw(bad_alloc);
 	static int getNums();
 protected:	
 	static int allAccounts;

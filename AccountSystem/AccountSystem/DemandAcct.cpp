@@ -92,11 +92,7 @@ void DemandAcct::searchRecd(Date & date1, Date & date2)
 }
 Account& DemandAcct::operator=(Account& account) throw(bad_alloc)
 {
-	record = account.getRecord();//deep copy, throw(bad_alloc)
-	password=account.getPassword();
-	account_id=account.getNumber();
-	account_name=account.getName();
-	account_balance=account.getBalance();
+	Account::operator=(account);//deep copy,throw(bad_alloc)
 	printf("= DemandAcct\n");
 	return *this;
 }

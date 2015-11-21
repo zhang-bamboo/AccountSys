@@ -19,7 +19,8 @@ CreditCardAcct::CreditCardAcct(CreditCardAcct& account) throw(bad_alloc) try
 	password = account.password;
 	account_id = account.account_id;
 	account_name = account.account_name;
-	account_balance = account.account_balance;	
+	account_balance = account.account_balance;
+	creditLimit = account.creditLimit;
 }
 catch (bad_alloc e) {
 	cout << e.what() << endl;
@@ -91,12 +92,9 @@ void CreditCardAcct::searchRecd(Date & date1, Date & date2) throw(invalid_argume
 }
 Account& CreditCardAcct::operator=(Account& account) throw(bad_alloc)
 {
-
-	record = account.getRecord();//deep copy,throw(bad_alloc)
-	password = account.getPassword();
-	account_id = account.getNumber();
-	account_name = account.getName();
-	account_balance = account.getBalance();	
+	Account::operator=(account);//deep copy,throw(bad_alloc)
+	CreditCardAcct& creditAcct = dynamic_cast<CreditCardAcct&>(account);//向下转型
+	creditLimit = creditAcct.creditLimit;
 	return *this;
 }
 

@@ -26,11 +26,6 @@ void Account::chgPassword(int psword)
 	password = psword;
 }
 
-int Account::getPassword() const
-{
-	return password;
-}
-
 list<RcdItem>& Account::getRecord()
 {
 	return record;
@@ -50,6 +45,16 @@ string Account::getName() const
 //{
 	
 //}
+
+Account& Account::operator=(Account & account)throw(bad_alloc)
+{
+	record = account.record;//deep copy,throw(bad_alloc)
+	password = account.password;
+	account_id = account.account_id;
+	account_name = account.account_name;
+	account_balance = account.account_balance;
+	return *this;
+}
 
 int Account::getNums()
 {
